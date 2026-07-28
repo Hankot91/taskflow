@@ -99,7 +99,7 @@ export function TaskCard({ task, onClick }: TaskCardProps) {
 			{...listeners}
 			onPointerDown={handlePointerDown}
 			className={cn(
-				"w-full cursor-grab touch-none rounded-xl border border-outline-variant/20 bg-surface-container-lowest/70 p-lg text-left shadow-sm backdrop-blur-md transition-all duration-200 active:cursor-grabbing",
+				"w-full cursor-grab touch-none rounded-xl border border-outline-variant/20 bg-surface-container-lowest/70 p-lg text-left shadow-sm backdrop-blur-md transition-[transform,box-shadow] duration-200 active:cursor-grabbing",
 				!isDragging && "hover:-translate-y-1 hover:shadow-lg",
 				isDragging && "opacity-40 shadow-none",
 				isCompleted &&

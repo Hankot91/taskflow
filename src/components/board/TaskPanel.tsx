@@ -9,12 +9,14 @@ import {
 	DndContext,
 	closestCenter,
 	PointerSensor,
+	KeyboardSensor,
 	useSensor,
 	useSensors,
 	type DragEndEvent,
 } from "@dnd-kit/core";
 import {
 	SortableContext,
+	sortableKeyboardCoordinates,
 	verticalListSortingStrategy,
 	arrayMove,
 } from "@dnd-kit/sortable";
@@ -114,6 +116,9 @@ export function TaskPanel({
 
 	const checklistSensors = useSensors(
 		useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+		useSensor(KeyboardSensor, {
+			coordinateGetter: sortableKeyboardCoordinates,
+		}),
 	);
 
 	const handleChecklistDragEnd = (event: DragEndEvent) => {
@@ -246,7 +251,7 @@ export function TaskPanel({
 							)}
 						</div>
 
-						<div className="grid grid-cols-2 gap-md">
+						<div className="grid grid-cols-1 gap-md sm:grid-cols-2">
 							<div>
 								<label
 									htmlFor="priority"
@@ -306,7 +311,7 @@ export function TaskPanel({
 									</span>
 								))}
 							</div>
-							<div className="flex gap-sm">
+							<div className="flex flex-col gap-sm sm:flex-row">
 								<input
 									type="text"
 									value={tagInput}
@@ -320,18 +325,16 @@ export function TaskPanel({
 										}
 									}}
 									placeholder="Escribe y presiona Enter"
-									className="flex-1 rounded-lg border border-outline-variant bg-surface-container-low px-3 py-2 text-body-md text-on-surface focus:border-primary focus:outline-none"
+									className="min-w-0 flex-1 rounded-lg border border-outline-variant bg-surface-container-low px-3 py-2 text-body-md text-on-surface focus:border-primary focus:outline-none"
 								/>
 								<button
 									type="button"
 									onClick={addTag}
-									className="rounded-lg bg-surface-container-high px-3 py-2 text-on-surface-variant hover:text-primary"
+									className="flex shrink-0 items-center justify-center gap-1.5 rounded-lg bg-surface-container-high px-3 py-2 text-label-sm font-medium text-on-surface-variant hover:text-primary sm:w-10"
 									aria-label="Agregar etiqueta"
 								>
-									<Plus
-										className="h-4 w-4"
-										aria-hidden="true"
-									/>
+									<Plus className="h-4 w-4" aria-hidden="true" />
+									<span className="sm:hidden">Agregar</span>
 								</button>
 							</div>
 						</div>
@@ -361,7 +364,7 @@ export function TaskPanel({
 									</SortableContext>
 								</DndContext>
 							</div>
-							<div className="flex gap-sm">
+							<div className="flex flex-col gap-sm sm:flex-row">
 								<input
 									type="text"
 									value={checklistInput}
@@ -374,19 +377,17 @@ export function TaskPanel({
 											addChecklistItem();
 										}
 									}}
-									placeholder="Agregar ítem y presionar Enter"
-									className="flex-1 rounded-lg border border-outline-variant bg-surface-container-low px-3 py-2 text-body-md text-on-surface focus:border-primary focus:outline-none"
+									placeholder="Agregar ítem"
+									className="min-w-0 flex-1 rounded-lg border border-outline-variant bg-surface-container-low px-3 py-2 text-body-md text-on-surface focus:border-primary focus:outline-none"
 								/>
 								<button
 									type="button"
 									onClick={addChecklistItem}
-									className="rounded-lg bg-surface-container-high px-3 py-2 text-on-surface-variant hover:text-primary"
+									className="flex shrink-0 items-center justify-center gap-1.5 rounded-lg bg-surface-container-high px-3 py-2 text-label-sm font-medium text-on-surface-variant hover:text-primary sm:w-10"
 									aria-label="Agregar ítem al checklist"
 								>
-									<Plus
-										className="h-4 w-4"
-										aria-hidden="true"
-									/>
+									<Plus className="h-4 w-4" aria-hidden="true" />
+									<span className="sm:hidden">Agregar</span>
 								</button>
 							</div>
 						</div>

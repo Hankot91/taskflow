@@ -87,10 +87,10 @@ export function ConfirmModal({
 						type="button"
 						onClick={onConfirm}
 						className={cn(
-							"rounded-lg px-4 py-2 text-label-sm font-medium text-white",
+							"rounded-lg px-4 py-2 text-label-sm font-medium",
 							tone === "danger"
-								? "bg-error hover:opacity-90"
-								: "bg-primary hover:bg-primary-container",
+								? "bg-error text-on-error hover:opacity-90"
+								: "bg-primary text-on-primary hover:bg-primary-container",
 						)}
 					>
 						{confirmLabel}

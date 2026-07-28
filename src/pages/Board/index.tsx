@@ -4,12 +4,14 @@ import {
 	DndContext,
 	DragOverlay,
 	PointerSensor,
+	KeyboardSensor,
 	useSensor,
 	useSensors,
 	closestCenter,
 	type DragEndEvent,
 	type DragStartEvent,
 } from "@dnd-kit/core";
+import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 import { KanbanColumn } from "@/components/board/KanbanColumn";
 import { TaskCard } from "@/components/board/TaskCard";
 import { TaskPanel } from "@/components/board/TaskPanel";
@@ -43,6 +45,9 @@ export default function BoardPage() {
 
 	const sensors = useSensors(
 		useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+		useSensor(KeyboardSensor, {
+			coordinateGetter: sortableKeyboardCoordinates,
+		}),
 	);
 
 	const openCreate = (priority?: TaskPriority) => {

@@ -12,6 +12,7 @@ if (stored) {
 		const parsed = JSON.parse(stored);
 		if (parsed?.state?.theme === "dark") {
 			document.documentElement.classList.add("dark");
+			document.documentElement.style.colorScheme = "dark";
 		}
 	} catch {
 		// ignorar si el JSON guardado está corrupto

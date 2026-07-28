@@ -96,9 +96,12 @@ export function Sidebar() {
 								to={item.to}
 								end={item.to === "/"}
 								onClick={() => setMobileOpen(false)}
+								aria-label={
+									isCollapsed ? item.label : undefined
+								}
 								className={({ isActive }) =>
 									cn(
-										"flex items-center gap-md rounded-lg py-2.5 text-body-md transition-all duration-200",
+										"flex items-center gap-md rounded-lg py-2.5 text-body-md transition-[background-color,color] duration-200",
 										isCollapsed
 											? "h-12 w-auto justify-center"
 											: "px-sm",
@@ -118,7 +121,7 @@ export function Sidebar() {
 							{isCollapsed && (
 								<span
 									role="tooltip"
-									className="pointer-events-none absolute left-16 top-2 z-50 -translate-x-2 whitespace-nowrap rounded-md bg-inverse-surface px-sm py-xs text-[12px] text-inverse-on-surface opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100"
+									className="pointer-events-none absolute left-16 top-2 z-50 -translate-x-2 whitespace-nowrap rounded-md bg-inverse-surface px-sm py-xs text-[12px] text-inverse-on-surface opacity-0 transition-[opacity,transform] group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100"
 								>
 									{item.label}
 								</span>
