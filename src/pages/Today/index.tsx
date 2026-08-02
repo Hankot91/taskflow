@@ -123,7 +123,7 @@ export default function TodayPage() {
 					className="text-headline-md font-bold text-on-surface"
 					style={{ fontFamily: "var(--font-display)" }}
 				>
-					Hola, Camilo
+					Bienvenido
 				</h1>
 				<p className="mt-1 text-body-md text-on-surface-variant">
 					{format(new Date(), "EEEE d 'de' MMMM", { locale: es })}
